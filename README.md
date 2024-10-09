@@ -104,9 +104,9 @@ To run the docker image, a file called `docker-compose.yml` needs to be defined 
 ```yaml
 version: "3.9"
 services:
-  nictiz-r4-qa:
+  fhir-r4-qa:
     image: ghcr.io/ArdonToonstra/qa-tooling-fhir-r4@[version]
-    container_name: nictiz-r4-qa-[repo name]
+    container_name: fhir-r4-qa-[repo name]
     volumes:
       - type: bind
         source: [relative path to the root of the repo, from the path where this file resides]
@@ -120,7 +120,7 @@ services:
 
 Next, install and run [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or just Docker engine if you know how this works). Then, the following command should be executed from the directory where the docker-compose.yml file resides (it makes sense to put this in a .bat file):
 
-> docker compose up nictiz-r4-qa
+> docker compose up fhir-r4-qa
 
 This starts a local webserver that communicates with the tools. Go to http://localhost:9000 to run the steps defined in the qa.yaml file.
 

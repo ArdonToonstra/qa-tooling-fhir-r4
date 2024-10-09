@@ -1,8 +1,8 @@
 services:
-  nictiz-r4-qa:
+  fhir-r4-qa:
     build: .
     image: ghcr.io/ArdonToonstra/qa-tooling-fhir-r4
-    container_name: nictiz-tooling-r4-qa
+    container_name: fhir-r4-qa
     volumes:
       - type: bind
         source: .
