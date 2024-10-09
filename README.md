@@ -1,6 +1,6 @@
-# Nictiz QA tooling for FHIR R4 conformance resources
+# QA tooling for FHIR R4 conformance resources
 
-This repository contains automated tooling for FHIR R4 conformance resources (profiles, terminology resources, etc.) which are produced according the [Nictiz profiling guidelines](https://informatiestandaarden.nictiz.nl/wiki/FHIR:V1.0_FHIR_Profiling_Guidelines_R4). These tools aim to check as much of these guidelines (and general adherence to the FHIR specs) as is possible in an automated fashion. In addition, custom checks can be defined.
+This repository contains automated tooling for FHIR R4 conformance resources (profiles, terminology resources, etc.) which are produced according the [xxxx profiling guidelines](TODO). These tools aim to check as much of these guidelines (and general adherence to the FHIR specs) as is possible in an automated fashion. In addition, custom checks can be defined.
 
 To provide a consistent experience across platforms, these tools are packaged in a Docker container, based on Alpine Linux. They can be invoked either on a local system or as part of a Github workflow.
 
@@ -105,7 +105,7 @@ To run the docker image, a file called `docker-compose.yml` needs to be defined 
 version: "3.9"
 services:
   nictiz-r4-qa:
-    image: ghcr.io/nictiz/nictiz-tooling-r4-qa@[version]
+    image: ghcr.io/ArdonToonstra/qa-tooling-fhir-r4@[version]
     container_name: nictiz-r4-qa-[repo name]
     volumes:
       - type: bind
@@ -135,7 +135,7 @@ name: Profile QA - changed files
 on: [pull_request]
 
 jobs:
-  nictiz-r4-qa:
+  r4-qa:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -143,7 +143,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Docker
-        uses: Nictiz/Nictiz-tooling-R4-QA@[version]
+        uses: ArdonToonstra/qa-tooling-fhir-r4@[version]
         with:
           steps: "validate zib profiles, check formatting"
 ```

@@ -1,5 +1,5 @@
-name: 'Nictiz R4 QA'
-description: 'QA checks for Nictiz FHIR R4 resources'
+name: 'R4 QA'
+description: 'QA checks for FHIR R4 resources'
 inputs:
   fail-at:
     description: 'The test will fail when an issue of this level is detected. Options are "fatal", "error" and "warning".'
@@ -37,7 +37,7 @@ outputs:
     description: "Information about the status of each step"
 runs:
   using: "docker"
-  image: docker://ghcr.io/nictiz/nictiz-tooling-r4-qa:6.2.13
+  image: docker://ghcr.io/ArdonToonstra/qa-tooling-fhir-r4:0.1.0
   args:
     - --github
     - --changed-only=${{ inputs.changed-only}}
