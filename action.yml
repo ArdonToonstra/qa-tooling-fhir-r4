@@ -37,7 +37,7 @@ outputs:
     description: "Information about the status of each step"
 runs:
   using: "docker"
-  image: docker://ghcr.io/ardontoonstra/qa-tooling-fhir-r4:0.2.0
+  image: docker://ghcr.io/ardontoonstra/qa-tooling-fhir-r4:0.3.0
   args:
     - --github
     - --changed-only=${{ inputs.changed-only}}

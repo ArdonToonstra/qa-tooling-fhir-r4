@@ -1,8 +1,8 @@
 services:
-  fhir-r4-qa:
+  qa-tooling-fhir-r4:
     build: .
-    image: ghcr.io/ArdonToonstra/qa-tooling-fhir-r4
-    container_name: fhir-r4-qa
+    image: ghcr.io/ardontoonstra/qa-tooling-fhir-r4
+    container_name: qa-tooling-fhir-r4
     volumes:
       - type: bind
         source: .
