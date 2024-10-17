@@ -1,4 +1,4 @@
-name: 'R4 QA'
+name: 'FHIR R4 QA'
 description: 'QA checks for FHIR R4 resources'
 inputs:
   fail-at:
@@ -37,7 +37,7 @@ outputs:
     description: "Information about the status of each step"
 runs:
   using: "docker"
-  image: docker://ghcr.io/ardontoonstra/qa-tooling-fhir-r4:0.4.0
+  image: docker://ghcr.io/ardontoonstra/qa-tooling-fhir-r4:0.5.0
   args:
     - --github
     - --changed-only=${{ inputs.changed-only}}

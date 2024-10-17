@@ -219,8 +219,8 @@ class StepExecutor:
         self.file_collection        = file_collection
         self.printer                = printer
 
-        # By default, we handle the Nictiz profiling guidelines package. Additional ig's may be defined in the config file.
-        self.igs = ["nictiz.fhir.nl.r4.profilingguidelines"]
+        # No default ig package. Additional ig's may be defined in the config file.
+        self.igs = []
         if "igs" in config:
             self.igs += [ig for ig in config["igs"]]
 
@@ -333,9 +333,8 @@ class StepExecutor:
         out_file = tempfile.mkstemp(".xml")
         os.unlink(out_file[1])
 
-        # We're opiniated about terminology checking. We want to allow Dutch display values and we don't consider
-        # display issues errors.
-        tx_opt = ["-sct", "nl", "-display-issues-are-warnings"]
+        # We're opiniated about terminology checking. We don't consider display issues errors.
+        tx_opt = ["-sct", "-display-issues-are-warnings"]
         if not self.extensible_binding_warnings: # Our flag is the opposite of the default behaviour of the Validtor
             tx_opt += ["-no-extensible-binding-warnings"]
         if self.tx_disabled:

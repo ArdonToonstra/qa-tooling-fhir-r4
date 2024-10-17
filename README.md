@@ -19,7 +19,6 @@ Validating FHIR resources however is not always an exact science: there's a plet
 Terminology checking is one of the most complex topics of profile validation. One has to deal with national versions of code systems -- the Dutch edition of SNOMED in particular for our use case and with poor behaviour regarding display values.
 
 By default terminology checking it is opiniated about several of options:
-* The Dutch version of SNOMED is used.
 * And all languages are allowed for display values (the default for the Validator from version 6.1.1 onwards).
 * Display issues are reported as warnings, not as errors (the default behaviour of the Validator is to report them as errors).
 * When a code is encountered that falls outside an extensible bound ValueSet, no warning is emitted (the default behaviour of the Validator is to emit a warning). This can be overridden in the different usage scenarios.
@@ -76,22 +75,23 @@ main branch: origin/main
 ignored issues: known-issues.yml
 igs:
   - resources
+  - dependencies/private.package.xyx#1.0.2
 
 patterns:
-  zib profiles: resources/zib/zib-*.xml
+  acme-base profiles: resources/acme/base-*.xml
   other profiles:
-  - resources/zib/*.xml
-  - resources/nl-core/*.xml
+  - resources/bar/*.json
+  - resources/fo/*.json
   conceptmaps: resources/**/conceptmap-*.xml
 
 steps:
-  validate zib profiles:
-    description: Validate the zib profiles using the HL7 Validator
-    patterns: zib profiles
-    profile: http://nictiz.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-Zib-Profiles
+  validate acme-base profiles:
+    description: Validate the acme-base profiles using the HL7 Validator
+    patterns: acme-base profiles
+    profile: http://acme.nl/fhir/StructureDefinition/ProfilingGuidelinesR4-StructureDefinitions-acme-base
   check formatting:
     patterns:
-      - zib profiles
+      - acme-base profiles
       - other profiles
       - conceptmaps
     script: scripts/check-formatting.sh
@@ -125,6 +125,11 @@ Next, install and run [Docker Desktop](https://www.docker.com/products/docker-de
 This starts a local webserver that communicates with the tools. Go to http://localhost:9000 to run the steps defined in the qa.yaml file.
 
 It can take a while to start validation when this command is executed for the first time. This is because the Docker image needs to be downloaded. Subsequent runs will start a lot faster.
+
+### Dependencies
+If your project includes dependencies, they should be installed locally in the host repository to ensure proper functionality of this tool. This installation process may be based on the template code provided in this repository. In this code, the Firely Terminal is utilized to download these dependencies. The account to login with Firely Terminal needs to have access to a Simplifier account with the necessary credentials, as this account is required to install private packages. Without these private packages, the Java validator will not be able to access the required resources for validation.
+
+Once installed, the dependencies will be placed in the `/dependencies` folder of your project. Afterward, ensure that you update the `qa.yml` file by passing the required dependencies to the -ig parameter, allowing the Java validator to locate and utilize them effectively during the validation process. The `/dependencies` folder can be added to the gitignore.
 
 ### On Github
 

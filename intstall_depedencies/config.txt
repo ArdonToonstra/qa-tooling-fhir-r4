@@ -1,0 +1,2 @@
+SIMPLIFIER_USERNAME=[enter email]
+SIMPLIFIER_PASSWORD=[enter password]
