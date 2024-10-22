@@ -334,7 +334,7 @@ class StepExecutor:
         os.unlink(out_file[1])
 
         # We're opiniated about terminology checking. We don't consider display issues errors.
-        tx_opt = ["-sct", "-display-issues-are-warnings"]
+        tx_opt = ["-sct", "intl", "-display-issues-are-warnings"]
         if not self.extensible_binding_warnings: # Our flag is the opposite of the default behaviour of the Validtor
             tx_opt += ["-no-extensible-binding-warnings"]
         if self.tx_disabled:
